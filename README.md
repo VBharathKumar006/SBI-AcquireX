@@ -10,7 +10,7 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 **SBI AcquireX** is an **Agentic AI-powered customer acquisition platform** designed to help SBI intelligently attract, engage, and convert potential customers into long-term banking users.
 
@@ -122,118 +122,14 @@ Continuously provides:
 
 #  Agentic AI Architecture
 
-```text
-                    USER
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/fe786daf-44d7-4dc8-99df-4e8b64151cc0" />
 
-                      │
-
-         Web / Mobile / Chat Interface
-
-                      │
-
-           Conversational AI Layer
-
-                      │
-
-        ┌─────────────────────┐
-        │ Customer Profiling  │
-        │       Agent         │
-        └─────────────────────┘
-
-                      │
-
-        ┌─────────────────────┐
-        │ Recommendation      │
-        │      Agent          │
-        └─────────────────────┘
-
-                      │
-
-      Savings | Cards | Loans
-      SIP | Insurance | FD
-
-                      │
-
-        ┌─────────────────────┐
-        │ Onboarding Agent    │
-        │ Form + KYC + Docs   │
-        └─────────────────────┘
-
-                      │
-
-        ┌─────────────────────┐
-        │ Follow-up Agent     │
-        │ Recover Drop-offs   │
-        └─────────────────────┘
-
-                      │
-
-        ┌─────────────────────┐
-        │ Engagement Agent    │
-        └─────────────────────┘
-
-                      │
-
-           Long-Term SBI Customer
-```
 
 ---
 
 #  User Journey
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/a1656aac-2422-456f-9afe-6faeb802c113" />
 
-```text
-User Opens SBI AcquireX
-
-↓
-
-AI: What do you do?
-
-↓
-
-Student
-
-↓
-
-AI: What are your goals?
-
-↓
-
-Savings + Investments
-
-↓
-
-AI Recommends:
-
-✓ Student Savings Account
-
-✓ SIP
-
-✓ Education Loan
-
-↓
-
-AI assists KYC
-
-↓
-
-Account Opened
-
-↓
-
-After Few Months
-
-↓
-
-AI Suggests:
-
-Investment Plans
-
-Credit Cards
-
-Insurance
-
-Based on Customer Profile
-```
 
 ---
 
@@ -361,4 +257,4 @@ SBI-AcquireX/
 
 ---
 
-⭐ *SBI AcquireX aims to transform customer acquisition from a one-time interaction into an intelligent, lifelong banking relationship powered by Agentic AI.*
+*SBI AcquireX aims to transform customer acquisition from a one-time interaction into an intelligent, lifelong banking relationship powered by Agentic AI.*
