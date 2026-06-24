@@ -257,4 +257,46 @@ SBI-AcquireX/
 
 ---
 
+---
+
+#  Current MVP Build
+
+The repository now includes a working starter implementation:
+
+- **Frontend:** Next.js dashboard for lead intake, recommendations, journey status, and agent insights.
+- **Frontend options:** Customer segment presets, KYC readiness tracker, product comparison, and drop-off recovery simulator.
+- **Backend:** Node.js/Express API with profile, product, recommendation, KYC readiness, recovery, and journey endpoints.
+- **Agents:** Python multi-agent stubs for profiling, recommendations, onboarding, follow-up, and engagement.
+- **Docs:** Architecture and user-flow notes for the first hackathon iteration.
+
+##  Run Locally
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the frontend:
+
+```bash
+npm run dev:frontend
+```
+
+Start the backend:
+
+```bash
+npm run dev:backend
+```
+
+Run the Python agent demo:
+
+```bash
+npm run agent:demo
+```
+
+Backend environment variables can be copied from `backend/.env.example`.
+
+---
+
 *SBI AcquireX aims to transform customer acquisition from a one-time interaction into an intelligent, lifelong banking relationship powered by Agentic AI.*
