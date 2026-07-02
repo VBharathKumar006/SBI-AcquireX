@@ -24,8 +24,6 @@ export type AgentInsight = {
   insight: string;
 };
 
-export type JourneyStage = "lead" | "profiled" | "recommended" | "kyc" | "converted";
-
 export type KycDocument = {
   id: string;
   label: string;
@@ -43,4 +41,27 @@ export type RecoveryPlan = {
 export type CustomerPreset = {
   label: string;
   profile: CustomerProfile;
+};
+
+export type DocumentVerificationResult = {
+  document: string;
+  status: "verified" | "needs-review" | "missing";
+  confidence: number;
+  note: string;
+};
+
+export type EngagementPlan = {
+  title: string;
+  cadence: string;
+  offers: string[];
+  tips: string[];
+  lifeEventSuggestion: string;
+};
+
+export type IntegrationStatus = {
+  name: string;
+  status: "working" | "adapter-ready" | "not-configured";
+  detail: string;
+  endpoint?: string;
+  envKey?: string;
 };

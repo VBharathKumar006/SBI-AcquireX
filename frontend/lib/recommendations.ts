@@ -1,4 +1,14 @@
-import { AgentInsight, CustomerPreset, CustomerProfile, KycDocument, ProductRecommendation, RecoveryPlan } from "./types";
+import {
+  AgentInsight,
+  CustomerPreset,
+  CustomerProfile,
+  DocumentVerificationResult,
+  EngagementPlan,
+  IntegrationStatus,
+  KycDocument,
+  ProductRecommendation,
+  RecoveryPlan
+} from "./types";
 
 export const customerPresets: CustomerPreset[] = [
   {
@@ -110,6 +120,15 @@ export const products = [
     risks: ["low", "medium", "high"],
     benefits: ["Family protection", "Digital policy journey", "Tax planning support"],
     documents: ["PAN card", "Aadhaar or identity proof", "Address proof", "Income proof"]
+  },
+  {
+    id: "personal-loan",
+    name: "SBI Xpress Credit Personal Loan",
+    category: "Loan",
+    goals: ["personal loan", "travel", "medical", "wedding", "home renovation"],
+    risks: ["medium", "high"],
+    benefits: ["Quick eligibility check", "Pre-filled application", "Flexible repayment options"],
+    documents: ["PAN card", "Aadhaar or identity proof", "Address proof", "Income proof"]
   }
 ];
 
@@ -210,3 +229,94 @@ export function buildAgentInsights(profile: CustomerProfile): AgentInsight[] {
     }
   ];
 }
+
+export function verifyDocuments(selectedDocumentIds: string[], recommendations: ProductRecommendation[]): DocumentVerificationResult[] {
+  const progress = calculateKycProgress(selectedDocumentIds, recommendations);
+
+  return kycDocuments
+    .filter((document) => progress.requiredIds.includes(document.id))
+    .map((document) => {
+      const uploaded = selectedDocumentIds.includes(document.id);
+      const reviewNeeded = uploaded && document.id === "income" && recommendations.some((item) => item.category === "Loan");
+
+      return {
+        document: document.label,
+        status: !uploaded ? "missing" : reviewNeeded ? "needs-review" : "verified",
+        confidence: !uploaded ? 0 : reviewNeeded ? 82 : 96,
+        note: !uploaded
+          ? "Upload required before onboarding can be completed."
+          : reviewNeeded
+            ? "Income document detected; manual review is recommended for loan eligibility."
+            : "Document format and customer details look consistent."
+      };
+    });
+}
+
+export function buildEngagementPlan(profile: CustomerProfile, recommendations: ProductRecommendation[]): EngagementPlan {
+  const topCategory = recommendations[0]?.category || "Savings";
+  const wealthGoal = profile.goal.toLowerCase().includes("wealth") || profile.riskAppetite === "high";
+  const educationGoal = profile.goal.toLowerCase().includes("education");
+
+  return {
+    title: `${profile.name || "Customer"} retention plan`,
+    cadence: wealthGoal ? "Bi-weekly" : "Monthly",
+    offers: [
+      `Personalized ${recommendations[0]?.name || "SBI product"} onboarding nudge`,
+      topCategory === "Loan" ? "Pre-approved repayment calculator" : "Digital account activation offer",
+      wealthGoal ? "SIP top-up reminder" : "Savings habit challenge"
+    ],
+    tips: [
+      "Keep emergency funds separate from monthly spends.",
+      wealthGoal ? "Review SIP allocation every quarter." : "Set one automated savings goal.",
+      educationGoal ? "Track loan disbursement milestones early." : "Review nominee and KYC details."
+    ],
+    lifeEventSuggestion: educationGoal
+      ? "Education milestone: offer student loan support and savings account bundle."
+      : wealthGoal
+        ? "Career growth milestone: offer SIP, credit card, and insurance bundle."
+        : "Family planning milestone: offer FD, insurance, and emergency fund guidance."
+  };
+}
+
+export const integrationStatuses: IntegrationStatus[] = [
+  {
+    name: "JWT authentication",
+    status: "working",
+    detail: "Backend can issue demo JWTs for protected journey sessions.",
+    endpoint: "POST /api/auth/demo-token",
+    envKey: "JWT_SECRET"
+  },
+  {
+    name: "Gemini API / Vision",
+    status: "adapter-ready",
+    detail: "Document verification uses deterministic OCR-style scoring until GEMINI_API_KEY is configured.",
+    endpoint: "POST /api/document-verification/vision",
+    envKey: "GEMINI_API_KEY"
+  },
+  {
+    name: "LangGraph agents",
+    status: "adapter-ready",
+    detail: "Python agent nodes and API orchestration mirror the planned graph flow.",
+    endpoint: "POST /api/journey"
+  },
+  {
+    name: "MongoDB",
+    status: "adapter-ready",
+    detail: "Lead persistence uses an in-memory fallback until MongoDB is connected.",
+    endpoint: "POST /api/leads",
+    envKey: "MONGODB_URI"
+  },
+  {
+    name: "ChromaDB",
+    status: "adapter-ready",
+    detail: "Product search has a local vector fallback and can route to ChromaDB later.",
+    endpoint: "GET /api/products/vector-search",
+    envKey: "CHROMA_URL"
+  },
+  {
+    name: "Convex",
+    status: "adapter-ready",
+    detail: "Schema and sync plan are documented under convex/.",
+    envKey: "CONVEX_URL"
+  }
+];

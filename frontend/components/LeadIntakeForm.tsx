@@ -26,64 +26,66 @@ export function LeadIntakeForm({ initialProfile, onSubmit }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="mb-5 flex items-center justify-between gap-4">
+    <form onSubmit={handleSubmit} className="rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-card">
+      <div className="mb-5 flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-sbi-ink">Lead intake</h2>
-          <p className="mt-1 text-sm text-slate-600">Capture customer context for agent routing.</p>
+          <h2 className="text-base font-semibold text-[var(--text-primary)]">Lead intake</h2>
+          <p className="text-xs text-[var(--text-secondary)]">Capture customer context for agent routing.</p>
         </div>
-        <Sparkles className="h-5 w-5 text-sbi-cyan" aria-hidden="true" />
+        <span className="rounded-lg bg-gradient-to-br from-sbi-blue to-sbi-cyan p-2 text-white shadow-sm">
+          <Sparkles className="h-4 w-4" />
+        </span>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <label className="text-sm font-medium text-slate-700">
+        <label className="text-sm font-medium text-[var(--text-primary)]">
           Name
           <input
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
+            className="mt-1 w-full rounded-lg border border-[var(--card-border)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-sbi-blue focus:outline-none focus:ring-1 focus:ring-sbi-blue"
             value={profile.name}
             onChange={(event) => update("name", event.target.value)}
           />
         </label>
-        <label className="text-sm font-medium text-slate-700">
+        <label className="text-sm font-medium text-[var(--text-primary)]">
           Age
           <input
             type="number"
             min={18}
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
+            className="mt-1 w-full rounded-lg border border-[var(--card-border)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-sbi-blue focus:outline-none focus:ring-1 focus:ring-sbi-blue"
             value={profile.age}
             onChange={(event) => update("age", Number(event.target.value))}
           />
         </label>
-        <label className="text-sm font-medium text-slate-700">
+        <label className="text-sm font-medium text-[var(--text-primary)]">
           Occupation
           <input
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
+            className="mt-1 w-full rounded-lg border border-[var(--card-border)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-sbi-blue focus:outline-none focus:ring-1 focus:ring-sbi-blue"
             value={profile.occupation}
             onChange={(event) => update("occupation", event.target.value)}
           />
         </label>
-        <label className="text-sm font-medium text-slate-700">
+        <label className="text-sm font-medium text-[var(--text-primary)]">
           Annual income
           <input
             type="number"
             min={0}
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
+            className="mt-1 w-full rounded-lg border border-[var(--card-border)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-sbi-blue focus:outline-none focus:ring-1 focus:ring-sbi-blue"
             value={profile.income}
             onChange={(event) => update("income", Number(event.target.value))}
           />
         </label>
-        <label className="text-sm font-medium text-slate-700 md:col-span-2">
+        <label className="text-sm font-medium text-[var(--text-primary)] md:col-span-2">
           Financial goal
           <input
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
+            className="mt-1 w-full rounded-lg border border-[var(--card-border)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-sbi-blue focus:outline-none focus:ring-1 focus:ring-sbi-blue"
             value={profile.goal}
             onChange={(event) => update("goal", event.target.value)}
           />
         </label>
-        <label className="text-sm font-medium text-slate-700">
+        <label className="text-sm font-medium text-[var(--text-primary)]">
           Risk appetite
           <select
-            className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
+            className="mt-1 w-full rounded-lg border border-[var(--card-border)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-sbi-blue focus:outline-none focus:ring-1 focus:ring-sbi-blue"
             value={profile.riskAppetite}
             onChange={(event) => update("riskAppetite", event.target.value as CustomerProfile["riskAppetite"])}
           >
@@ -96,7 +98,7 @@ export function LeadIntakeForm({ initialProfile, onSubmit }: Props) {
 
       <button
         type="submit"
-        className="mt-5 inline-flex items-center gap-2 rounded-md bg-sbi-blue px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+        className="mt-5 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-sbi-blue to-sbi-cyan px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md hover:brightness-110"
       >
         <Sparkles className="h-4 w-4" aria-hidden="true" />
         Run agents

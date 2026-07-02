@@ -10,6 +10,6 @@
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
     "start:backend": "npm --prefix backend run start",
-    "agent:demo": "python agents/orchestrator.py"
+    "agent:demo": "echo 'Python agents removed — see backend/services/geminiAgent.js for AI agent logic'"
   }
 }

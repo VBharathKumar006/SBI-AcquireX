@@ -9,4 +9,7 @@ __pycache__/
 .pytest_cache/
 coverage/
 *.log
-
+desktop.ini
+backend/uploads/
+*.tsbuildinfo
+next-env.d.ts
